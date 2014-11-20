@@ -1,13 +1,28 @@
 Impressify
 ==========
+Impressify.js is a visual interactive development environment (IDE) to create stunning Impress.JS presentations on HTML5 with CSS transformations and transitions. 
 
-Impressify.js is a visual interactive development environment (IDE) to create stunning Impress.JS presentations on CSS transformations and transitions. It is built on top of Impressionist beta created by Harish Sivaramakrishnan (@hsivaram) and Impress.js created by Bartek Szopka (@bartaz).
+It is built on top of Impressionist beta created by Harish Sivaramakrishnan [@hsivaram](https://github.com/harish-io/Impressionist) and Impress.js created by Bartek Szopka [@bartaz](https://github.com/bartaz/impress.js/).
 
-Demo
+##Features
+Impressify was built as a component to an e-learning platform. The collective features of Impressify are as follows:
+* Upload existing MS Powerpoint decks onto the editor
+* Edit the slides created, add native Impress slides, add text and standard styling components to the added text snippets
+* Add audio, video, and images stored in databases onto slides
+* Add pop quizes between slides in a module
+* Add a custom timer to each slide to prevent the student from moving forward too fast
 
-Features
+The above functionalities needed some changes in Impress.JS itself, namely:
+* Control of the movement through the presentation. Forward clicks depend on the timer constraint set for each slide. Back clicks are allowed without any timer constraint. 
+* When the slide contains a pop quiz, the presentation does not move forward until the user selects the right answer to the question. 
 
-About the Project
+###Using Impressify
+Each of the AJAX calls in impressify.JS in our original project GET, POST, PUT and DELETE to servlets in an MVC architecture. Each call has been supplemented with comments to give a better understanding of the input and output data to allow for easy plug and play of the editor with your applications. 
+
+##Demo
+A demonstration of the Impressify editor can be found [here](https://www.youtube.com/watch?v=lqi51H3Zx5g&list=UUOwKiIb6UZ4bIdhZwv-gNMA)
+
+##About the Project
 
 Impressify is released under the MIT license. 
 
