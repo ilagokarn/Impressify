@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Preview Module</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+        <link href="css/impress-demo.css" rel="stylesheet" />
+        <link href="css/bootstrap.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/radio.css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <div id="impress">
+  
+        </div>
+        <input type="button" id="nextClick" value="nextClick" hidden>
+        <div id="hint" class="row-fluid" style="position: fixed; bottom: 0px; background-color: #888888; height: 100px; padding-top: 20px; opacity: 0.8;">
+            <table class="span8 offset3">
+                <tr>
+                    <td><h2 style="color: whitesmoke;">Use Left and Right arrow keys to navigate!&nbsp;&nbsp;</h2></td>
+                    <td><img src="img/navkeys.png" width="100" alt=""/></td>
+                </tr>
+            </table>
+        </div>
+        <div id="arrows" class="row-fluid" style="position: fixed; bottom: 0px;">
+            <span id="rightArrow"><a href="#"><i class="icon-4x icon-arrow-right" style="padding: 20px; color: #484848; float: right;"></i></a></span>
+            <span id="leftArrow"><a href="#"><i class="icon-4x icon-arrow-left" style="padding: 20px; color: #484848; float: left;"></i></a></span>
+        </div>
+        <div id="checkpointrow" class="row-fluid">
+            <img src="img/vlogo.png" style="top: 200px; left: 20px; position: absolute;" alt="logo"/>
+            <div class="row-fluid">
+                <div id="popquizHeader" class="row customaboutbox" style="height: 80px; margin: 5px; margin-top: 100px;">
+                    <h1 id="headerText" style="padding: 20px; text-align: center;">Wait a Minute..</h1>
+                </div>
+            </div>
+            
+            <div id="questionOverlay" class="row-fluid span8 offset2">
+                <div class="span6">
+                    <div class="customaboutbox" style="height: 250px; margin-left: 5px; margin-top: 5px; padding: 10px;">
+                        <h3 style="color: yellowgreen">Question:<br/><span id="question"></span></h3>
+                    </div>
+                </div>
+                <div class="span6">
+                    <div class="row-fluid">
+                        <div id="answerbox1" class="answerbox1" style="height: 50px; margin: 5px; padding: 5px;">
+                    <input type="radio" id="radioChoice1" name="radio" value="1" checked>&nbsp;&nbsp;<span id="answer1" style="font-size: 18px; color: darkslategrey;"></span>
+                    </div> 
+                    </div>
+                    <div class="row-fluid">
+                        <div id="answerbox2" class="answerbox2" style="height: 50px; margin: 5px; padding: 5px;">
+                        <input type="radio" id="radioChoice2" name="radio" value="2">&nbsp;&nbsp;<span id="answer2" style="font-size: 18px; color: darkslategrey;"></span>
+                    </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div id="answerbox3" class="answerbox3" style="height: 50px; margin: 5px; padding: 5px;">
+                        <input type="radio" id="radioChoice3" name="radio" value="3">&nbsp;&nbsp;<span id="answer3" style="font-size: 18px; color: darkslategrey;"></span><br/>
+                    </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div id="answerbox4" class="answerbox4" style="height: 50px; margin: 5px; padding: 5px;">
+                            <input type="radio" id="radioChoice4" name="radio" value="4">&nbsp;&nbsp;<span id="answer4" style="font-size: 18px; color: darkslategrey;"></span><br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="explanationRow" class="row-fluid span8 offset2">
+                <div class="row customaboutbox" style="height: 80px; margin: 5px; padding: 10px;">
+                <span id="explanation"  style="font-size: 18px; color: whitesmoke;">Hint</span><br/>
+            </div>
+            </div>
+            <h1 style="z-index: -1; position: absolute; right: 20px; bottom: 20px; color: darkslategray; border-color: darkslategray; border-width: 2px; border-style: solid; padding: 3px; border-radius: 4px;">Submit</h1>
+            <input type="checkbox" name="radio" id="submitCheckpoint" value="submit" style="position: absolute; z-index: 5; height: 100px; width: 100px; opacity: 0; right: 20px; bottom: 20px;">
+        </div>
+        
+         <div id="endingMessageRow" class="row-fluid" style="padding-top: 150px;">
+            <div id="endingMessage" class="customaboutbox span4 offset4">
+                <div id="endingMessageInner"  class="customaboutbox-inner">
+                    <br/>
+                    <h2>Congratulations!</h2>
+                    <p>You have reached the end of this module. You will now be redirected to your home page. <br/>
+                    If you want to retake the module, simply click on the module name again. Or, proceed to take the quiz. 
+                    Remember to finish the quiz before the deadline. </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal hide fade modalwindow" id="endingMessageModal">
+              <div class="modal-header">
+                <h3 style="color: green;">Congratulations!</h3>
+              </div>
+              <div class="modal-body" id="exportcode" >
+                  <p>You have reached the end of this module. You will now be redirected to your home page. <br/>
+                    If you want to retake the module, simply click on the module name again. Or, proceed to take the quiz. 
+                    Remember to finish the quiz before the deadline. </p>
+              </div>
+        </div>
+        
+        <script src="js/jquery.js"></script>
+        <script src="js/jquery.cookie.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/impress.js"></script>
+        <script>
+             $(document).ready(function () {
+                loadBody();
+                $("#checkpointrow").hide();
+                $("#endingMessageRow").hide();
+                $("#endingMessage").hide();
+                $("#endingMessageModal").modal("hide");
+                $("#endingMessageInner").hide();
+                $("#questionOverlay").hide();
+                $("#explanationRow").hide();
+                setTimeout(function (){$("#hint").hide();}, 4000);
+            });
+            var checkpointArray = new Array;
+            var timerArray = new Array;
+            function loadBody(){
+                var moduleID = location.search.split('moduleID=')[1] ? location.search.split('moduleID=')[1] : '0';
+                $.ajax({
+                     type: 'GET',
+                     url: "/BP/module",
+                     cache: false,
+                     data: {"getmods": "impressCode", "moduleID": moduleID},
+                     dataType: "html",
+                     success: function(data)
+                     {
+                        var json = JSON.parse(data);
+                        var els = json[0].impressCode;
+                        var html = $.parseHTML(els);
+                        //for each element check if it is a DIV element
+                        $.each( html, function( i, el ) {
+                            if (el.constructor  === HTMLDivElement) {
+                                var children = $(el).children();
+                                //re-add all the src for all images/slides/audio/video
+                                $.each(children, function(i, elch){
+                                    if(elch instanceof HTMLImageElement){
+                                        var alt = $(elch).attr("alt");
+                                        ////alert("getting slide: "+ alt);
+                                        $.ajax({
+                                            type: 'GET',
+                                            url: "/BP/module",
+                                            cache: false,
+                                            data: {"getmods": "media", "moduleID": moduleID, "mediaID": alt},
+                                            success: function(src){
+                                                var jsrc = JSON.parse(src);
+                                                $(elch).attr("src", jsrc[0].data);
+                                                var timer = {
+                                                    slideNumber: alt.split("-")[1], 
+                                                    timer: jsrc[0].runtime
+                                                };
+                                                timerArray.push(timer);
+                                                //$.cookie("runtimeImpress", runtime);
+                                                if(alt.split("-")[0]==="slide" && jsrc[0].question !==""){
+                                                    var checkpoint = {
+                                                        slideNumber: alt.split("-")[1], 
+                                                        question: jsrc[0].question,
+                                                        answer1: jsrc[0].answer1,
+                                                        answer2: jsrc[0].answer2,
+                                                        answer3: jsrc[0].answer3,
+                                                        answer4: jsrc[0].answer4,
+                                                        answer: jsrc[0].answer,
+                                                        explanation: jsrc[0].explanation
+                                                    };
+                                                    checkpointArray.push(checkpoint); 
+                                                }
+                                              }
+                                         });
+                                     } else if(elch instanceof HTMLDivElement & $(elch).attr("alt")!==undefined){
+                                        var alt = $(elch).attr("alt");
+                                        var elch1 = $(elch).children()[0];
+                                        //alert("alt of div"+alt);
+                                        ////alert("getting slide: "+ alt);
+                                        $.ajax({
+                                            type: 'GET',
+                                            url: "/BP/module",
+                                            cache: false,
+                                            data: {"getmods": "media", "moduleID": moduleID, "mediaID": alt},
+                                            success: function(src){
+                                                var jsrc = JSON.parse(src);
+                                                $(elch1).attr("src", jsrc[0].data);
+                                                
+                                            }
+                                        });
+                                    }
+                                 });
+                                $("#impress").append(el);
+                            }
+                        });
+                        initializeImpress();
+                    }
+                });
+            }
+            
+            function initializeImpress(){
+                impress().init();
+            }
+            function getCheckpoint(validClicks){
+                var flag = 0;
+                ////alert("getCheckpoint: "+validClicks);
+                for (var i = 0; i<checkpointArray.length; i++){
+                    ////alert("----"+checkpointArray[i].slideNumber+"----validClicks---"+validClicks);
+                    if(parseInt(checkpointArray[i].slideNumber)===validClicks){
+                        flag++;
+                        document.getElementById("question").innerHTML = checkpointArray[i].question;
+                        document.getElementById("answer1").innerHTML = checkpointArray[i].answer1;
+                        document.getElementById("answer2").innerHTML = checkpointArray[i].answer2;
+                        document.getElementById("answer3").innerHTML = checkpointArray[i].answer3;
+                        document.getElementById("answer4").innerHTML = checkpointArray[i].answer4;
+                        $("#impress").hide();
+                        document.getElementById("nextClick").disabled = true;
+                        
+                        
+                        $("#checkpointrow").fadeIn(1000);
+                        $("#questionOverlay").fadeIn(1000);
+                        $("#explanationRow").fadeIn(1000);
+                        $("#arrows").hide();
+                    }
+                }
+                if(flag===0){
+                    ////alert("no checkpoint, going to next slide");
+                    return false;
+                }
+                return true;
+            }
+            
+            
+            function submitCP(validClicks){
+                var chosenAnswer = $('input[name=radio]:radio:checked').val();
+                ////alert("chosen answer: "+chosenAnswer);
+                var flag = false;
+                for (var i = 0; i<checkpointArray.length; i++){
+                        if(parseInt(checkpointArray[i].slideNumber)===validClicks){
+                            ////alert("found cp in array, checking for answer");
+                            var answer = checkpointArray[i].answer;
+                            ////alert("correct answer: "+answer);
+                            if (answer===chosenAnswer){
+                                ////alert("correct answer is equal to chosen answer");
+                                ////alert(checkpointArray[i].explanation);
+                                document.getElementById("explanation").innerHTML = checkpointArray[i].explanation;
+                                setTimeout(function (){ 
+                                    $("#checkpointrow").hide();
+                                    $("#questionOverlay").hide();
+                                    $("#explanationRow").hide();
+                                    $("#impress").show();
+                                    $( "#radioChoice1" ).prop( "checked", false );
+                                    $( "#radioChoice2" ).prop( "checked", false );
+                                    $( "#radioChoice3" ).prop( "checked", false );
+                                    $( "#radioChoice4" ).prop( "checked", false );
+                                    $( "#submitCheckpoint" ).prop( "checked", false );
+                                }, 3000);
+                                flag = true;
+                                checkpointArray.splice(i,1);                                    
+                                ////alert("all done closed popup ");
+                                    
+                            }else{
+                                ////alert("correct answer not equal to chosen answer")
+                                document.getElementById("explanation").innerHTML = "Nope, try again. "+checkpointArray[i].explanation;
+                                flag=false;
+                            }
+                        }
+                    }
+                return flag;
+            }
+            function getTimer(validClicks){
+                ////alert(" round 1: at validkeyup: "+validClicks+" need timer for 2");
+                for (var i = 0; i<timerArray.length; i++){
+                    ////alert("----"+checkpointArray[i].slideNumber+"----"+clicks+" "+parseInt(checkpointArray[i].slideNumber)===clicks);
+                    if(parseInt(timerArray[i].slideNumber)===validClicks){ //need to return timer for next slide, not current
+                        ////alert("returning timer from slide: "+timerArray[i].slideNumber+" with validclicks of: "+validClicks+" to get:"+timerArray[i].timer);
+                        return timerArray[i].timer;
+                    }
+                }
+            }
+            function endOfModule(){
+                $("#checkpointrow").hide();
+                $("#overlay").hide(); 
+                $("#popup").hide();
+                $("#endingMessageModal").modal("show");
+                setTimeout(function (){ window.close();}, 5000);
+            }
+        </script>
+    </body>
+</html>

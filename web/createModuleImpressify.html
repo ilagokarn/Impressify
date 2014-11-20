@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Impressionist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+     <link rel="icon" type="image/ico" href="images/favicon.ico" />
+    <!-- Loading Flat UI -->
+    <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="css/matrices.css" rel="stylesheet">
+    <link href="css/progressbar.css" rel="stylesheet">
+    <link href="css/sliderskin.css" rel="stylesheet">
+    <link href="css/colorpicker.css" rel="stylesheet">
+    <link href="css/freetrans.css" rel="stylesheet">
+    <link href="css/codemirror.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/popup.css">
+
+    <!-- webfonts -->
+
+    <link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Miltonian' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <link href="css/customImpressify.css" rel="stylesheet">
+   
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+    <link rel="stylesheet" href="css/jquery-ui-timepicker-addon.css">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+       
+     <div id="impressionistviewport">
+      <div class ="mainfooter palette-night">
+            <div class = "slidethumbholdercontainer">
+                <div class = "slidethumbholder">
+                 
+                </div>
+                <table>
+                    <tr>
+                        <td><a class="btn btn-primary" href="#" id="addslidebtn" style="font-size: 14px;" title="Add Slide"><i class="icon-plus"></i>&nbsp;Slide</a><br/></td>
+                    </tr>
+                </table>
+             </div>
+      </div>
+    <div class="settingsbox">
+
+    </div>
+    <div class="palette palette-night-dark sidebar">
+      <dl class="palette palette-info logoholder">
+                <img src="img/logo.jpg" class="logoimg" style="padding-top: 25px; vertical-align: central; width: 40px; height: 40px;"></img>
+                <dd class="logotext">Impressify for BP<sup class="versiontext">beta</sup></dd>
+                <br/>
+                <p style="color: white; text-transform: none; font-size: 16px;">  Welcome, <span id="usernameHolder"></span></p>
+      </dl>
+      <dl class="palette palette-night-dark sidebarmenuitem">
+          <dd><a href="trainerViewModule.html" style="font-size: 14px;">Trainer Home<i class="icon-home" style="float:right"></i></a></dd>
+      </dl>
+      <dl class="palette palette-night-dark sidebarmenuitem">
+          <dd><a id="editdetailspanel"  style="font-size: 14px;">Edit Module Details<i class="icon-list" style="float:right"></i></a></dd>
+      </dl>
+      <dl class="palette palette-night-dark sidebarmenuitem">
+                
+                <dd><a id="newstylepanel"  style="font-size: 14px;">Choose Style<i class="icon-pencil" style="float:right"></i></a></dd>
+      </dl>
+       <dl class="palette palette-night-dark sidebarmenuitem viewtogglebtn">
+                
+                <dd><a id="newstylepanel"  style="font-size: 14px;">Transition Editor<i id="viewtoggleicon" class="icon-th-large" style="float:right"></i></a></dd>
+      </dl>
+      <dl class="palette palette-night-dark sidebarmenuitem">
+                
+                <dd><a id="exportpresopanel"  style="font-size: 14px;">Save & Preview<i class="icon-eye-open" style="float:right"></i></a></dd>
+      </dl>
+      <dl class="palette palette-night-dark sidebarmenuitem">
+          <dd><a href="trainerViewModule.html"  style="font-size: 14px;">Help<i class="icon-minus-sign" style="float:right"></i></a></dd>
+      </dl>
+      <!--<dl class="palette palette-night-dark sidebarmenuitem">
+                
+                <dd><a id="settingspanel">Settings<i class="icon-wrench" style="float:right"></i></a></dd>
+      </dl>-->
+       <!--<dl class="palette palette-night-dark sidebarmenuitem">
+                
+                <dd><a id="openpresentationsbtn">My Presentations<i class="icon-save" style="float:right"></i></a></dd>
+      </dl>
+        <div class="sidebarfooter" style="text-align: center;">
+           <a href="#" id="exportcontentbtn" class="btn btn-inline btn-primary previewbtn"><i class="fui-eye-16"></i>&nbsp;Preview</a>
+          <a href="#" id="savepresentationbtn" class="btn btn-inline btn-primary previewbtn"><i class="icon-ok-sign"></i>&nbsp;Publish</a>
+        </div>-->
+    </div>
+          
+     
+    
+    <div class="maskedcontainer">
+
+    <div class="mainviewport">
+    <div class="palette palette-clouds maingreyarea">
+      <!-- main footer shows slide thumbnails-->
+
+       
+        
+        <!-- *************************-->
+        <div class="btn-toolbar dockedtoolbar">
+                <div class="btn-group" style="margin:0 auto;">
+                    <a class="btn btn-info toolbarblockleft" href="#" title="Text Controls" style="font-size: 12px; pointer-events: none; box-shadow: inset 2px 2px 15px 20px rgba(0,0,0,0.39);">Edit<br/>Text</a>
+                    <a class="btn btn-info" id="addtextbtn"  href="#" title="Add Text"><i class="icon-pencil"></i><br/><font style="font-size: 8px; margin: 0 auto; padding: 0;">Add</font></a>
+                    <a class="btn btn-info menubtn" href="#" id="makebold" title="Bold"><i class="icon-bold"></i><br/><font style="font-size: 8px; margin: 0 auto; padding: 0;">Bold</font></a>
+                    <a class="btn btn-info menubtn" href="#" id="makeitalic" title="Italic"><i class="icon-italic"></i><br/><font style="font-size: 8px; margin: 0 auto; padding: 0;">Italic</font></a>
+                    <a class="btn btn-info menubtn" href="#" id="makeunderline" title="Underline"><i class="icon-underline"></i><br/><font style="font-size: 8px; margin: 0 auto; padding: 0;">Underline</font></a>
+                  <a class="btn btn-info menubtn" href="#" id="makealignleft" title="Align Left"><i class="icon-align-left"></i><br/><font style="font-size: 8px; margin: 0 auto; padding: 0;">Left</font></a>
+                  <a class="btn btn-info menubtn" href="#" title="Align Center"><i class="icon-align-center" id="makealigncenter"></i><br/><font style="font-size: 8px; margin: 0 auto; padding: 0;">Center</font></a>
+                  <a class="btn btn-info menubtn" href="#" title="Align Right"><i class="icon-align-right" id="makealignright"></i><br/><font style="font-size: 8px; margin: 0 auto; padding: 0;">Right</font></a>
+                  <div class="dk_container dk_container_custom span3 dk_shown dk_theme_info dropdownlist" id="dk_container_herolist" tabindex="1" style="background: green; text-align: center; height: 63px;"><a class="dk_toggle dk_toggle_custom toolbarblockboth">
+                          <span class="dk_label pulldownmenu" title="Change Style of Text" style="text-align: center;">TEXT <br/>SIZE</span>
+                    <span class="select-icon select-icon-custom"></span></a>
+                    <div class="dk_options dropdownpopup" style="top: 38px;">
+                    <ul class="dk_options_inner">
+                        <li class=""><a class="dropdownitem" data-dk-dropdown-value="slidelementh1">Heading 1</a></li>
+                        <li class=""><a class="dropdownitem" data-dk-dropdown-value="slidelementh2">Heading 2</a></li>
+                        <li class=""><a class="dropdownitem" data-dk-dropdown-value="slidelementh3">Heading 3</a></li>
+                        <li class=""><a class="dropdownitem" data-dk-dropdown-value="P">Paragraph</a></li>
+                      </ul></div></div>
+                  <a id="colorpickerbtn" class="btn btn-info" href="#"  data-color-format="hex" data-color="rgb(255, 255, 255)" title="Pick Color"><i class="icon-tint"></i><br/><font style="font-size: 8px; margin: 0 auto; padding: 0;">Color</font></a>
+                  <a class="btn btn-info" href="#" title="Media Controls" style="font-size: 12px; pointer-events: none; box-shadow: inset 2px 2px 15px 20px rgba(0,0,0,0.39);">Insert<br/>Item</a>
+                  <a class="btn btn-info menubtn" id="addimagebtn" href="#" title="Add Image"><i class="icon-picture"></i><br/><font style="font-size: 8px; margin: 0 auto; padding: 0;">Image</font></a>
+                  <a class="btn btn-info menubtn" id="addaudiobtn" href="#" title="Add Audio"><i class="icon-headphones"></i><br/><font style="font-size: 8px; margin: 0 auto; padding: 0;">Audio</font></a>
+                  <a class="btn btn-info menubtn" id="addvideobtn" href="#" title="Add Video"><i class="icon-camera"></i><br/><font style="font-size: 8px; margin: 0 auto; padding: 0;">Video</font></a>
+                  <a class="btn btn-info menubtn" id="addcheckpointbtn" href="#" title="Add Pop Quiz to Slide"><i class="icon-lightbulb"></i><br/><font style="font-size: 8px; margin: 0 auto; padding: 0;">Pop Quiz</font></a>
+                  <a class="btn btn-info menubtn" id="addtimerbtn" href="#" title="Add Timer to Slide"><i class="icon-time"></i><br/><font style="font-size: 8px; margin: 0 auto; padding: 0;">Timer</font></a>
+                 
+                 <!-- <a class="btn btn-primary toolbarblockboth" href="#"><i class="fui-eye-16"></i>&nbsp;Preview</a>
+                  <a class="btn btn-warning" href="#"><i class="icon-ok-sign"></i>&nbsp;Save</a>-->
+
+                </div>
+              </div>
+              <!--<div class="presentationmeta"><p id="presentationmetatitle" style="margin:0 auto; text-transform:none; font-size:130%; color:white"> </p> <a href="#" style="position:absolute; right:5px; top:3px" id="editpresonamebtn" class="btn btn-small btn-inline btn-primary"><i class="icon-edit"></i></a></div>-->
+              <!--<a href="#" id="dude" class="btn btn-large btn-danger" data-trigger="click" data-toggle="popover" title="" data-content="And here's some amazing content. It's very engaging. right?" data-original-title="A Title">Click to toggle popover</a>-->
+              <!--<a href="#" class="btn" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." title="" data-original-title="Popover on top">Popover on top</a>-->
+        <div class="slideviewportcontainer">
+            <div class="slideviewport">
+               <div class="impress-slide-container">
+                
+              </div>
+                <span id="play">
+                    <span class="rotate label label-disabled" id="spanrotate"><i class="icon-rotate-left"></i></span>
+                    <!--<span class="scale label label-important"><i class="icon-resize-horizontal"></i></span>-->
+                    <span class="skewx label label-disabled" id="spanskewx"><i class="icon-resize-horizontal"></i></span>
+                    <span class="skewy label label-disabled" id="spanskewy"><i class="icon-resize-vertical"></i></span>
+                    <span class="deleteicon label label-important" id="spandelete"><i class="fui-cross-16"></i></span>
+
+           <!-- <span class="move">move</span>-->
+               </span>
+          </div>
+        </div>
+    </div>
+    <div class="palette palette-clouds orchgreyarea">
+       <div class="transformcontrolsholder">
+          <h3 class="transformlabel">Rotation Z</h3>
+          <input class="knob" id="rotationknob" data-width="40" data-min="-360" data-max="360" data-fgColor="green" data-bgColor="#FFFFFF" data-linecap="round" data-displayPrevious="true" value="0">
+          <h3 class="transformlabel">Rotation X</h3>
+          <input class="knob" id="skewxknob" data-width="40" data-min="-360" data-max="360" data-fgColor="green" data-bgColor="#FFFFFF" data-linecap="round" data-displayPrevious="true" value="0">
+          <h3 class="transformlabel">Rotation Y</h3>
+          <input class="knob" id="skewyknob" data-width="40" data-min="-360" data-max="360" data-fgColor="green" data-bgColor="#FFFFFF" data-linecap="round" data-displayPrevious="true" value="0">
+          <h3 class="transformlabel">Zoom</h3>
+          <input type="range" id="scalerange" class="ranges" min="1" max="6" value="1" />
+          <h3 class="transformlabel">Depth</h3>
+          <input type="range" id="depthrange" class="ranges" min="-3000" max="5000" value="1" />
+     </div>
+      <div class="orchestrationviewport">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    </div>
+
+<div class="placeholder"></div>
+
+<div class="preloaderviewport">
+    <div class="preloadmessage">
+        <dl class="palette palette-info">
+            <dd>
+                <div id="loadprogressmeter" class="meter grey">
+                   <span style="width: 100%"><span>
+                </div>
+            </dd>
+            <img src="img/logo.jpg" style="height: 50px; width: 50px; padding: 20px;"/>
+            <dd class="preloadertext"><span class="loadingtext" style="padding-left: 30px">Loading</span> Impressify for BP<sup class="versiontext">beta</sup></dd>
+        </dl>
+    </div>
+</div>
+<!-- Add the image modal -->
+<div class="modal hide fade modalwindow" id="tourmodal" style="height: auto; width: auto;">
+              <div class="modal-header">
+                  <h3>Impressify for BP</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+            <div id="helpdiv" class="modal-body" style="text-align: center;">
+                  <h3>Welcome to the Impressify Editor!</h3><br/>
+                  <button id="takeatour" class="btn btn-large btn-primary" style="font-size: 16px;" onclick="tour();">Take a Tour</button><br/><br/>
+                  <button id="closetour" class="btn btn-large btn-default" style="font-size: 16px;">Continue to Editor</button>
+                  <iframe id="helpVideo" width="600" height="400" src="//www.youtube.com/embed/lqi51H3Zx5g" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+<!-- Add the image modal -->
+        <div class="modal hide fade modalwindow" id="imagemodal">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Add Image</h3>
+              </div>
+              <div class="modal-body">
+                <p>Upload an image to this slide</p>
+                <input type="file" id="imageinput"/>
+                <span id="loadingMsgImage">Image being uploaded, please wait a while.</span><br/>
+                <span id="imageError"></span>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn">Close</a>
+                <a href="#" class="btn btn-primary" id="appendimagebtn"> <i class="icon-plus"></i> &nbsp; Add</a>
+              </div>
+        </div>
+
+<!-- Add the image modal -->
+        <div class="modal hide fade modalwindow" id="audiomodal">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Add Audio</h3>
+              </div>
+              <div class="modal-body">
+                <p>Upload Audio</p>
+                <input type="file" id="audioinput"/>
+                <span id="loadingMsgAudio">Audio being uploaded, please wait a while.</span><br/>
+                <span id="audioError"></span>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn btn-primary" id="appendaudiobtn"> <i class="icon-plus"></i> &nbsp; Add</a>
+              </div>
+        </div>
+
+<!-- Add the image modal -->
+        <div class="modal hide fade modalwindow" id="videomodal">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Add Video</h3>
+              </div>
+              <div class="modal-body">
+                <p>Upload video to slide. Note(Maximum size allowed: 16MB)</p>
+                <input type="file" id="videoinput"/> <br/>
+                <span id="loadingMsgVideo">Video being uploaded, please wait a while.</span><br/>
+                <span id="videoError"></span>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn btn-primary" id="appendvideobtn"> <i class="icon-plus"></i> &nbsp; Add</a>
+              </div>
+        </div>
+
+
+        <!-- Preview Modal -->
+
+        <div class="modal hide fade modalwindow" id="previewmodal" style="width:400px">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Generating Preview</h3>
+              </div>
+              <div class="modal-body">
+                <p id="previewmessage"> Please wait while we generate the preview... </p>
+                <div id="progressmeter" class="meter blue">
+                    <span style="width: 100%"><span>
+                </div>
+              </div>
+                <div class="modal-footer">
+                <a href="#" class="btn">Close</a>
+               <a href="#" class="btn disabled" id="openpreviewbtn">Open Preview</a>
+              </div>
+        </div>
+
+
+          <!-- Code Export Modal -->
+          <div class="modal hide fade modalwindow" id="exportcodemodal">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Export Code</h3>
+              </div>
+              <div class="modal-body" id="exportcode" >
+                <p style="width:400px; font-size:130%; color:black"> Download a copy of the <a style="color:#999" href="https://github.com/bartaz/impress.js/archive/master.zip" target="_blank">impress.js</a> framework and inject the contents below under the div with id "impress"<h3>
+                <pre  style="height:300px; overflow:scroll;">
+                  <code class="html" id="exportedcode" >
+
+                  </code>
+                </pre>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn">Close</a>
+              </div>
+        </div>
+          
+           <div class="modal hide fade modalwindow" id="checkpointmodal">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Pop Quiz Editor</h3>
+              </div>
+              <div class="modal-body" id="checkpointmodalbody" >
+                  <div id="cpBody">
+                      Question: <br/>
+                    <input type="text" id="question" name="question" value="" placeholder="Enter your question here" class="span4">
+                    <br/>                    
+                    <!--This division is to put in answer choices-->
+                    Answers: <br/>
+                    <div id="answerChoices">
+                        <input type="radio" id="radioChoice1" name="radio" value="1" checked>&nbsp;&nbsp;<input type="text"  id="questionChoice1" name="questionChoice" value="" placeholder="Enter your choice here" class="span4"><br/>
+                        <input type="radio" id="radioChoice2" name="radio" value="2">&nbsp;&nbsp;<input type="text" id="questionChoice2" name="questionChoice" value="" placeholder="Enter your choice here" class="span4"><br/>
+                        <input type="radio" id="radioChoice3" name="radio" value="3">&nbsp;&nbsp;<input type="text" id="questionChoice3" name="questionChoice" value="" placeholder="Enter your choice here" class="span4"><br/>     
+                        <input type="radio" id="radioChoice4" name="radio" value="4">&nbsp;&nbsp;<input type="text" id="questionChoice4" name="questionChoice" value="" placeholder="Enter your choice here" class="span4"><br/>
+                        Explanation for the right answer: <br/>
+                        <input type="text" id="explanation" name="questionExplanation" value="" placeholder="Enter your explanation here" class="span4"><br/>
+                        <span id="cperror" style="color: red;"></span>
+                    </div>
+                  </div>
+                  <span id="cpMessage" style="font-size: 16px;"></span>
+              </div>
+              <div id="cpFooter" class="modal-footer">
+                  <a href="#" class="btn" id="deletecheckpointbtn">Delete</a>
+                  <a href="#" class="btn" id="savecheckpointbtn">Save</a>
+              </div>
+        </div>
+          
+        <div class="modal hide fade modalwindow" id="timermodal">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Timer Editor</h3>
+              </div>
+              <div class="modal-body" id="timermodalbody" >
+                  <div id="tBody">
+                      <p>Enter the minimum amount of time you would want a trainee to spend on this slide.</p>
+                      <table>
+                          <tr>
+                          <td>Time for Slide:</td>
+                            <td><input id="timermins" type="number" class="btn btn-default" value="1" required="" style="width: 50px;"/> Minutes &nbsp;&nbsp;
+                                <input id="timersecs" type="number" class="btn btn-default" value="30" required="" style="width: 50px;"/> Seconds
+                            </td>
+                          </tr>
+                      </table>
+                  </div>
+                  <span id="timerMsg"></span>
+                  </div>
+                  
+              <div id="timerFooter" class="modal-footer">
+                  <a href="#" class="btn" id="savetimerbtn">Save</a>
+              </div>
+        </div>
+          
+          <div class="modal hide fade modalwindow" id="editdetailsmodal">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Module Details Editor</h3>
+              </div>
+              <div class="modal-body" id="editdetailsmodalbody" >
+                   <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Module Name:</td>
+                                <td><input type="text" id="moduleName" required/>
+                                    <span id="moduleError"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Category:</td>
+                                <td>
+                                    <select id="category" multiple>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Trainee Group:</td>
+                                <td>
+                                    <select id="group" multiple>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Set End Date:</td>
+                                <td>
+                                    <input type="text" id="endDate">
+                                </td>
+                            <tr>
+                                <td>Schedule Publish (optional):</td>
+                                <td>
+                                    <input type="text" id="schedulePublishDate">
+                                </td>
+                            <tr>
+                                <td>Schedule Recall (optional):</td>
+                                <td>
+                                    <input type="text" id="scheduleRecallDate">
+                                </td>
+                            <tr>
+                                <td>Time per Slide:</td>
+                                <td><input id="mins" type="number" class="btn btn-default" value="1" required="" style="width: 50px;"/> Minutes &nbsp;&nbsp;
+                                    <input id="secs" type="number" class="btn btn-default" value="30" required="" style="width: 50px;"/> Seconds
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+              </div>
+              <div class="modal-footer">
+                  <a href="#" class="btn" id="editdetailsbtn">Edit</a>
+              </div>
+        </div>
+          
+          <!-- Style selection Modal -->
+          <div class="modal hide fade modalwindow" id="styleselectionmodal">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Select Style</h3>
+              </div>
+              <div class="modal-body" id="styleselections" style="overflow:scroll;">
+                  <div class="stylethumbnail" data-style="lato" style="width: 100px">
+                      <h3 class="styleh3 style1">Lato</h3>
+                      <p class="stylep style1" style="margin-left:30px"> Content </p>
+                  </div>
+                  <div class="stylethumbnail" data-style="sketch" style="width: 130px">
+                      <h3 class="styleh3 style1 sketch">Sketch</h3>
+                      <p class="stylep style1" style="margin-left:40px" > Content </p>
+
+                  </div>
+                     <div class="stylethumbnail" data-style="montserrat" style="width: 200px">
+                      <h3 class="styleh3 style1 montserrat">Montserrat</h3>
+                      <p class="stylep style1" style="margin-left:70px"> Content </p>
+                  </div>
+                     <div class="stylethumbnail" data-style="quicksand" style="width: 200px">
+                      <h3 class="styleh3 style1 quicksand">Quicksand</h3>
+                      <p class="stylep style1" style="margin-left:70px"> Content </p>
+                  </div>
+                     <div class="stylethumbnail" data-style="miltonian" style="width: 200px">
+                      <h3 class="styleh3 style1 miltonian">Miltonian</h3>
+                      <p class="stylep style1" style="margin-left:70px"> Content </p>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn">Close</a>
+                <a href="#" class="btn btn-primary" id="applystylebtn"> &nbsp; Apply</a>
+              </div>
+        </div>
+    <!--Division to show any errors-->
+    <div id="overlay"></div>
+    <div id="popup"  style="background-color:#fafafa">
+        <br><br>
+        <h4 id="errorText"></h4>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-2"><a class = "navbar-btn btn btn-success btn pull-right" id="yes" role="button">Yes</a></div>
+            <div class="col-md-2"><a class = "navbar-btn btn btn-primary btn pull-right" id="no" role="button">No</a></div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+
+    <!-- Load JS here for greater good =============================-->
+   
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+    <script src="js/matrix.js"></script>
+    <script src="js/knob.js"></script>
+    <script src="js/jquery.dropkick-1.0.0.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap-colorpicker.js"></script>
+    <script src="js/jquery.placeholder.js"></script>
+    <script src="js/transform2d.js"></script>
+    <script src="js/keymaster.js"></script>
+    <script src="js/newpresotemplate.js"></script>
+    <script src="js/matrices.js"></script>
+    <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+    <script src="js/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="js/jquery.timepicker.js"></script>
+    <script src="js/jquery-ui-timepicker-addon.js"></script>
+    <script src ="js/startup.js"></script>
+    <script src="js/impressionist.js"></script>
+    <script src="js/trainerProtection.js" async></script>
+    <!--[if lt IE 8]>
+      <script src="js/icon-font-ie7.js"></script>
+      <script src="js/icon-font-ie7-24.js"></script>
+    <![endif]-->
+
+  </body>
+</html>
