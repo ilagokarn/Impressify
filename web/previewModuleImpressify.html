@@ -34,7 +34,6 @@ and open the template in the editor.
             <span id="leftArrow"><a href="#"><i class="icon-4x icon-arrow-left" style="padding: 20px; color: #484848; float: left;"></i></a></span>
         </div>
         <div id="checkpointrow" class="row-fluid">
-            <img src="img/vlogo.png" style="top: 200px; left: 20px; position: absolute;" alt="logo"/>
             <div class="row-fluid">
                 <div id="popquizHeader" class="row customaboutbox" style="height: 80px; margin: 5px; margin-top: 100px;">
                     <h1 id="headerText" style="padding: 20px; text-align: center;">Wait a Minute..</h1>
@@ -120,13 +119,22 @@ and open the template in the editor.
             });
             var checkpointArray = new Array;
             var timerArray = new Array;
+            /*
+             * Load the body of the module from the database. When in the editor, the save and preview button would have 
+             * generated the HTML Code for the presentation itself and stored it in the database. Here, we retrieve the code, 
+             * and check each child div element. We check to see if it is a PPT slide, image, audio or video tag, or div text snippet.
+             * Accordingly, we add each element to a slide and load the slide in the editor. If no code exists in the database ie
+             * the PPT has been uploaded for the first time, the editor loads just the PPT slides as images (retrieved from the database)
+             * as blobs. 
+             * 
+             */
             function loadBody(){
                 var moduleID = location.search.split('moduleID=')[1] ? location.search.split('moduleID=')[1] : '0';
                 $.ajax({
                      type: 'GET',
-                     url: "/BP/module",
+                     url: "URL",
                      cache: false,
-                     data: {"getmods": "impressCode", "moduleID": moduleID},
+                     data: {"moduleID": moduleID},
                      dataType: "html",
                      success: function(data)
                      {
@@ -144,7 +152,7 @@ and open the template in the editor.
                                         ////alert("getting slide: "+ alt);
                                         $.ajax({
                                             type: 'GET',
-                                            url: "/BP/module",
+                                            url: "URL",
                                             cache: false,
                                             data: {"getmods": "media", "moduleID": moduleID, "mediaID": alt},
                                             success: function(src){
@@ -200,6 +208,19 @@ and open the template in the editor.
             function initializeImpress(){
                 impress().init();
             }
+            /* 
+             * For each slide being loaded, we also load pop quiz and timer details and put them in respective arrays. This array
+             * is consulted everytime a valid keyup occurs. For valid keyups, we listen to navigation key events and try to click a hidden button 
+             * which alternates between enabled and disabled states based on the timer. If the button is clickable (ie if the timer has elapsed), 
+             * a valid key-up is fired, the checkpoint array checks to see if there is any pop quiz attached to the slide. If the 
+             * button is unclickable, it means that the timer is underway and no valid keyup is logged. If a checkpoint 
+             * exists, the presentation is replaced by a pop quiz screen which only vanishes to show the presentation iff
+             * the answer selected is the right one. If the checkpoint answer is not correct, it does not move forward until the correct 
+             * answer is selected. Once the checkpoint is answered correctly, or if there is no checkpoint, the timer array is consulted for the 
+             * next slide timer constraint. The clickable button is set disabled until the timer elapses and no valid keyups are logged 
+             * until then. Once the timer elapses, the button is clickable again and listening for valid keyups. 
+             * 
+             */
             function getCheckpoint(validClicks){
                 var flag = 0;
                 ////alert("getCheckpoint: "+validClicks);

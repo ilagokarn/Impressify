@@ -469,14 +469,6 @@ Impressionist.prototype =
 		$("#slidethumb_"+id).attr("data-transform-string", str);
 	},
         /*
-         * method not used
-         * @returns {undefined}
-         */
-	setupPopover : function()
-	{
-		$(".slidelement").popover({html:"hello world",placement:"bottom", trigger:"click"});
-	},
-        /*
          * Enable drag of element across slide
          * @returns {undefined}
          */
@@ -519,6 +511,10 @@ Impressionist.prototype =
 		
 		
 	},
+        /**
+         * Enables drag and resize of selected element
+         * @returns {undefined}
+         */
         enableResizeAndDrag : function()
 	{
 
@@ -792,6 +788,13 @@ Impressionist.prototype =
 		//$("#presentationmetatitle").html($("#titleinput").val());
 
 	},
+        /**
+         * Takes in the slide ID from the database and left and right coordinates to position the slide in the editor on reload.
+         * @param {type} id
+         * @param {type} left
+         * @param {type} right
+         * @returns {undefined}
+         */
         addSlideFromDB : function(id, left, right)
 	{
                 thumb = slidethumb;
@@ -2111,32 +2114,6 @@ Impressionist.prototype =
 	{
 		$("#styleselectionmodal").modal("show");
 	},
-        /*
-         * Method not used
-         */
-	deleteSavedPresentation : function( id )
-	{
-		presentations = JSON.parse(me.getItem(me.saveKey));
-		for(var i=0; i< presentations.length; i++)
-		{
-			presentation = presentations[i];
-			if(id === presentation.id)
-			{
-				presentations.splice(i, 1);
-				break;
-			}
-		}
-		console.log("after delete", presentations);
-		me.saveItem(me.saveKey, JSON.stringify(presentations));
-		presentations = me.getSavedPresentations();
-		me.renderPresentations( presentations );
-		lastsaved =JSON.parse(me.getItem(me.lastSaved));
-		if(lastsaved.id === id)
-		{
-			console.log("lastsaved", lastsaved.id);
-			localStorage.removeItem(me.lastSaved);
-		}
-	},
         /**
          * Checks if command is for preview
          * If True, generates impress code, saves to database and displays in new window
@@ -2221,121 +2198,6 @@ Impressionist.prototype =
                                 el.addClass("impress-slide-element");
                                 el.addClass("montserrat");
                         }
-	},
-        /*
-         * Method not used
-         */
-	createNewPresentation : function()
-	{
-		$(".slidethumbholder").html("");
-		$(".impress-slide-container").html();
-		me.addSlide();
-		me.savePresentation();
-	},
-        /*
-         * Method not used YET
-         */
-	openPresentationForEdit : function( id )
-	{
-		console.log("id", id);
-		for(var i=0; i<me.mypresentations.length; i++)
-		{
-			presentation = me.mypresentations[i];
-			if(id === presentation.id)
-			{
-				$(".impress-slide-container").html(presentation.contents);
-				$(".slidethumbholder").html(presentation.thumbcontents);
-				$(".slidethumbholder").each( function(i, object )
-				{
-					$(this).css("opacity", 1);
-				});
-
-				me.selectedSlide = $(".impress-slide-container").find(".impress-slide-element");
-				me.currentPresentation = presentation;
-				$("#presentationmetatitle").html(me.currentPresentation.title);
-				console.log("rendered");
-			}
-
-			$("#savedpresentationsmodal").modal("hide");
-
-		}
-		$(".slidemask").on("click", function( e )
-		{
-				console.log("repopulated zone");
-				e.stopPropagation();
-				id = (e.target.id).split("_")[1];
-				console.log("slidemask", id);
-				me.selectSlide( "#impress_slide_"+id );
-				$(".slidethumb").removeClass("currentselection");
-				$("#slidethumb_"+id).addClass("currentselection");
-				me.hideTransformControl();
-				me.switchView("right");
-		});
-		$(".deletebtn").on("click", function ( e )
-		{
-			p = $("#"+ $(this).attr("data-parent"));
-			slideid = $(this).attr("data-parent").split("_")[1];
-			console.log("parent", p, slideid);
-			p.animate({opacity:0}, 200, function( e )
-			{
-				$(this).remove();
-				$("#impress_slide_"+slideid).remove();
-				me.assignSlideNumbers();
-			});
-		});
-		me.enableDrag();
-	},
-        /*
-         * Takes in ID of presentation and does a preview
-         */
-	fetchAndPreview : function( id )
-	{
-		for(var i=0; i<me.mypresentations.length; i++)
-		{
-			presentation = me.mypresentations[i];
-			if(id === presentation.id)
-			{
-				console.log("content", presentation.contents);
-				$(".placeholder").html( presentation.contents);
-				$(".placeholder").find(".impress-slide").each( function(i, object )
-				{
-					console.log("Physically adding sizing information, again");
-					$(this).css("width", "1024px");
-					$(this).css("height", "768px");
-					$(this).addClass("step");
-				});
-				me.generatePreview( $(".placeholder").html().toString());
-				$("#savedpresentationsmodal").modal("hide");
-				break;
-			}
-		}
-	},
-        removeReference : function( arr )
-	{
-		
-		for(var i=0; i<arr.length; i++ )
-		{
-			if(arr[i].id === me.currentPresentation.id);
-			{
-				arr.splice(i,1);
-				break;
-			}
-		}
-
-		return arr;
-	},
-        /*
-         * Method not used
-         */
-	getSavedPresentations : function()
-	{
-			item = me.getItem(me.saveKey);
-			arr = [];
-			if(item)
-			{
-				 arr = JSON.parse(item);
-			}
-			return arr;
 	},
         /*
          * Generate code markup for preview/save
